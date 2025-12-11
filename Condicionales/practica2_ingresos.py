@@ -1,7 +1,7 @@
 # Variable de control para el bucle
-datos_correctos = False
+datos_correctos = False # Aun no tengo datos correctos
 
-while not datos_correctos:
+while not datos_correctos: #while not datos_correctos: Mientras no los tenga pide datos, valida datos.
     # Pedimos los ingresos
     ingresos_mensules = int(input("Ingresa tus ingresos mensuales: $"))
     
