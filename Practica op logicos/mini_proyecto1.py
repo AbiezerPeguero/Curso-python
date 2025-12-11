@@ -49,3 +49,16 @@ while intentos_restantes > 0:
             print(f"🔒 Credenciales incorrectos. Te quedan {intentos_restantes} intentos.")
             time.sleep(10) # Bloqueo temporal de 10 segundos
             print("⏳ puedes intentar otra vez ahora.")
+            
+# Cuando intensos_restantes llega a 0:
+    if intentos_restantes == 0:
+        print("\, Cuenta bloqueada")
+        print("Demaciados intentos fallidos.")
+        print("Bloquenado el sistema por 10 segundos...")
+        
+        #cuenta regresiva
+        for segundo in range(10, 0, -1): 
+            print(f"Intenta de nuevo en {segundo} segundos...", end="\r")
+            time.sleep(1)
+            
+        print("Puedes intentar iniciar sesión nuevamente ahora.")
