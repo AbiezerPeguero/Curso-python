@@ -15,15 +15,15 @@ intentos_restantes = intentos_maximos
 acceso_concedido = False
 
 while intentos_restantes > 0 and not acceso_concedido:
-    print(f"\n---SISTEMA DE AUTENTICACION---\n)")
+    print(f"\n---SISTEMA DE AUTENTICACION---)")
     print(f"Intentos restantes: {intentos_restantes}")
     
 # Pedir credenciales al usuario
-    usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ") 
+    usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ")
     contraseña_ingresada = input("Ingresa tu contraseña aqui: ")
     
 # Verificacion de espacio en blanco, paso 1
-    if not usuario_ingresado.strip() or not contraseña_ingresada.strip():
+    if not usuario_ingresado.strip() or not contraseña_ingresada:
         print("Error: No puedes dejar espacios en blanco. Intenta de nuevo.")
         continue # Vuelve al inicio sin restar intentos
 
@@ -50,7 +50,7 @@ while intentos_restantes > 0 and not acceso_concedido:
         else:
             # se agotaron los intentos
             print(f"\n Usuario  y/o contraseña incorrectos.")
-            print("Has agotado todos tus intentos. El sistema se bloqueara por 10 segundos.")
+            print("Has agotado todos tus intentos. El sistema se bloqueará por 10 segundos.")
             
         # Cuenta regresiva de bloqueo
             for segundo in range(10, 0, -1):
@@ -63,7 +63,7 @@ while intentos_restantes > 0 and not acceso_concedido:
             
 # Fin del sistema de autenticacion
 if acceso_concedido:
-    print("\n🎉 Haz iniciado sesión correctamente.")
+    print("\n🎉 Has iniciado sesión correctamente.")
     print("Puedes seguir usando el sistema")
 else:
     print("\n⛔ No se pudo iniciar sesión.")
