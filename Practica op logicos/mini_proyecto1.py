@@ -45,7 +45,7 @@ while intentos_restantes > 0 and not acceso_concedido:
         
         if intentos_restantes > 0:
             print("Credenciales incorrectas. Verifica si es la contraseña o el usuario.")
-            print("Te quedan {intentos_restantes} intentos.")
+            print(f"Te quedan {intentos_restantes} intentos.")
             
         else:
             # se agotaron los intentos
