@@ -11,54 +11,59 @@ contraseña_master = "master245" # Contraseña de emergencia
 intentos_maximos = 3
 intentos_restantes = intentos_maximos
 
-while intentos_restantes > 0:
+#Variable para ver si el acceso fue concedido
+acceso_concedido = False
+
+while intentos_restantes > 0 and not acceso_concedido:
     print(f"\n---SISTEMA DE AUTENTICACION---\n)")
     print(f"Intentos restantes: {intentos_restantes}")
     
+# Pedir credenciales al usuario
     usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ") 
     contraseña_ingresada = input("Ingresa tu contraseña aqui: ")
     
-    if usuario_ingresado == usuario_correcto and contraseña_ingresada == contraseña_principal:
-        print("✅ ¡Acceso concedido! Bienvenido al sistema.")
-    
-    elif usuario_correcto == usuario_ingresado and contraseña_ingresada == contraseña_master:
-        print("⚠️ Has utilizado la contraseña de emergencia. Por favor, cambia tu contraseña principal después de iniciar sesión.")
-    
-    else:
-        intentos_restantes -=1
-        print(f"❌ credeciales incorrectos. Te quedan {intentos_restantes} intentos.")
-        if intentos_restantes == 0:
-            print("🔒 Haz agotado tus intentos. Tu cuenta a sido blooqueda temporalmente")
-            time.sleep(10) # Bloqueo temporal de 10 segundos
-            print("⏳ Puedes intentar iniciar sesión nuevamente ahora.")
-            
-# Validacion de espacios en blanco
-
+# Verificacion de espacio en blanco, paso 1
     if not usuario_ingresado.strip() or not contraseña_ingresada.strip():
-        print("❌ No puedes dejar espacios en blanco. Intenta de nuevo")
+        print("Error: No puedes dejar espacios en blanco. Intenta de nuevo.")
         continue # Vuelve al inicio sin restar intentos
 
-# Verificacion de credenciales
-    elif usuario_ingresado == usuario_correcto and (contraseña_ingresada == contraseña_principal or contraseña_ingresada == contraseña_master):
-        print("✅ ¡Acceso concedido! Bienvenido al sistema.") # Aqui sales del bucle
-        
+# Verificacion de credenciales, paso 2
+    if usuario_ingresado == usuario_correcto and (contraseña_ingresada == contraseña_principal or contraseña_ingresada == contraseña_master):
+        # Acceso concedido, aqui definimos la variable de acceso
+        if contraseña_ingresada == contraseña_master:
+            print("Has ingresado la contraseña maestra. Acceso concedido.")
+            print("Por favor, cambia tu contraseña principal despues de iniciar sesion.")
+        else:
+            print("Acceso concedido. Bienvenido/a!")
+            
+        acceso_concedido = True
+        break # Salir del bucle
+    
+    #credenciales incorrectas.
     else:
         intentos_restantes -= 1
-        print("Usuario o contraseña incorrectos. Intenta de nuevo.")
-        if intentos_restantes == 0:
-            print(f"🔒 Credenciales incorrectos. Te quedan {intentos_restantes} intentos.")
-            time.sleep(10) # Bloqueo temporal de 10 segundos
-            print("⏳ puedes intentar otra vez ahora.")
-            
-# Cuando intensos_restantes llega a 0:
-    if intentos_restantes == 0:
-        print("\, Cuenta bloqueada")
-        print("Demaciados intentos fallidos.")
-        print("Bloquenado el sistema por 10 segundos...")
         
-        #cuenta regresiva
-        for segundo in range(10, 0, -1): 
-            print(f"Intenta de nuevo en {segundo} segundos...", end="\r")
-            time.sleep(1)
+        if intentos_restantes > 0:
+            print("Credenciales incorrectas. Verifica si es la contraseña o el usuario.")
+            print("Te quedan {intentos_restantes} intentos.")
             
-        print("Puedes intentar iniciar sesión nuevamente ahora.")
+        else:
+            # se agotaron los intentos
+            print(f"\n Usuario  y/o contraseña incorrectos.")
+            print("Has agotado todos tus intentos. El sistema se bloqueara por 10 segundos.")
+            
+        # Cuenta regresiva de bloqueo
+            for segundo in range(10, 0, -1):
+                print(f"Desbloqueo en {segundo} segundos...", end="\r")
+                time.sleep(1)
+                
+            print("El sistema ha sido desbloqueado. Puedes intentar iniciar sesion nuevamente.")
+            
+            intentos_restantes = intentos_maximos # Reiniciar intentos
+            
+# Fin del sistema de autenticacion
+if acceso_concedido:
+    print("\n🎉 Haz iniciado sesión correctamente.")
+    print("Puedes seguir usando el sistema")
+else:
+    print("\n⛔ No se pudo iniciar sesión.")
