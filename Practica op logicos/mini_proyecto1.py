@@ -19,11 +19,11 @@ while intentos_restantes > 0 and not acceso_concedido:
     print(f"Intentos restantes: {intentos_restantes}")
     
 # Pedir credenciales al usuario
-    usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ")
-    contraseña_ingresada = input("Ingresa tu contraseña aqui: ")
+    usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ").strip().lower
+    contraseña_ingresada = input("Ingresa tu contraseña aqui: ").strip()
     
 # Verificacion de espacio en blanco, paso 1
-    if not usuario_ingresado.strip() or not contraseña_ingresada:
+    if not usuario_ingresado.strip() or not contraseña_ingresada.strip():
         print("Error: No puedes dejar espacios en blanco. Intenta de nuevo.")
         continue # Vuelve al inicio sin restar intentos
 
