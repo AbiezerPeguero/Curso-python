@@ -15,11 +15,12 @@ intentos_restantes = intentos_maximos
 acceso_concedido = False
 
 while intentos_restantes > 0 and not acceso_concedido:
+# Mientras tenga intentos Y NO haya entrado, sigue preguntando. Eso es lo que significa lo que esta en el while.
     print(f"\n---SISTEMA DE AUTENTICACION---)")
     print(f"Intentos restantes: {intentos_restantes}")
     
 # Pedir credenciales al usuario
-    usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ").strip().lower
+    usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ").strip().lower()
     contraseña_ingresada = input("Ingresa tu contraseña aqui: ").strip()
     
 # Verificacion de espacio en blanco, paso 1
@@ -29,6 +30,8 @@ while intentos_restantes > 0 and not acceso_concedido:
 
 # Verificacion de credenciales, paso 2
     if usuario_ingresado == usuario_correcto and (contraseña_ingresada == contraseña_principal or contraseña_ingresada == contraseña_master):
+    #Dentro de este if, la credenciales deben ser ambas correctas, ya que el operador AND lo exige.
+    
         # Acceso concedido, aqui definimos la variable de acceso
         if contraseña_ingresada == contraseña_master:
             print("Has ingresado la contraseña maestra. Acceso concedido.")
