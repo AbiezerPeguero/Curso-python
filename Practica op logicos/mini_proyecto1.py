@@ -1,5 +1,22 @@
 # Sistema de autenticación realista (LOGIN + INTENTOS + BLOQUEO)
 
+"""
+Descripción:
+Este programa simula un sistema de inicio de sesión con:
+- Validación de usuario y contraseña
+- Límite de intentos
+- Bloqueo temporal del sistema al agotar intentos
+- Contraseña maestra para acceso de emergencia
+
+Conceptos utilizados:
+- Variables
+- Condicionales
+- Operadores lógicos
+- Bucle while
+- input / output
+- Manejo de tiempo con time.sleep()
+"""
+
 import time
 
 # Credenciales correctas
@@ -11,20 +28,20 @@ contraseña_master = "master245" # Contraseña de emergencia
 intentos_maximos = 3
 intentos_restantes = intentos_maximos
 
-#Variable para ver si el acceso fue concedido
-acceso_concedido = False
+#Variable para ver si el acceso fue concedido. 
+acceso_concedido = False # Controla si el usuario logró autenticarse
 
 while intentos_restantes > 0 and not acceso_concedido:
 # Mientras tenga intentos Y NO haya entrado, sigue preguntando. Eso es lo que significa lo que esta en el while.
     print(f"\n---SISTEMA DE AUTENTICACION---)")
     print(f"Intentos restantes: {intentos_restantes}")
     
-# Pedir credenciales al usuario
+# El .strip() elimina espacios en blanco al inicio y al final. El .lower() convierte todo a minusculas.
     usuario_ingresado = input("Ingresa tu nombre de usuario aqui: ").strip().lower()
     contraseña_ingresada = input("Ingresa tu contraseña aqui: ").strip()
     
 # Verificacion de espacio en blanco, paso 1
-    if not usuario_ingresado.strip() or not contraseña_ingresada.strip():
+    if not usuario_ingresado or not contraseña_ingresada:
         print("Error: No puedes dejar espacios en blanco. Intenta de nuevo.")
         continue # Vuelve al inicio sin restar intentos
 
